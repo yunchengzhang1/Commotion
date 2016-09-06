@@ -11,7 +11,7 @@ import CoreMotion
 
 class ViewController: UIViewController {
     
-    // MARK: class variables
+    //MARK: class variables
     let activityManager = CMMotionActivityManager()
     let pedometer = CMPedometer()
     let motion = CMMotionManager()
@@ -29,12 +29,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var stepsLabel: UILabel!
     @IBOutlet weak var isWalking: UILabel!
     
+    
+    //MARK: View Hierarchy
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        self.stepsLabel.text = "No Steps Data"
+        self.totalSteps = 0.0
         self.startActivityMonitoring()
         self.startPedometerMonitoring()
         self.startMotionUpdates()
@@ -46,11 +48,11 @@ class ViewController: UIViewController {
     }
     
     
-    // MARK: RawMotion Functions
+    // MARK: Raw Motion Functions
     func startMotionUpdates(){
         // some internal inconsistency here: we need to ask the device manager for device 
         
-        // should we be doing this from the MAIN queue? You will need to fix that!!!....
+        // TODO: should we be doing this from the MAIN queue? You will need to fix that!!!....
         if self.motion.deviceMotionAvailable{
             self.motion.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: self.handleMotion)
         }
