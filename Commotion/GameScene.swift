@@ -122,7 +122,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         }
     }
     
-    // MARK: UI Delegate Functions 
+    // MARK: UI Delegate Functions
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.addSprite()
     }
