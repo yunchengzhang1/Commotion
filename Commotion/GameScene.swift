@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import CoreMotion
 
-class GameScene: SKScene,SKPhysicsContactDelegate {
+class GameScene: SKScene {
 
     
     // MARK: Raw Motion Functions
@@ -36,7 +36,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         backgroundColor = SKColor.whiteColor()
         
         // start motion for gravity
-        physicsWorld.contactDelegate = self
         self.startMotionUpdates()
         
         // make sides to the screen
