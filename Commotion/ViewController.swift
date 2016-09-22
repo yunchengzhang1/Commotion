@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         
         // TODO: should we be doing this from the MAIN queue? You will need to fix that!!!....
         if self.motion.deviceMotionAvailable{
-            self.motion.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: self.handleMotion)
+            self.motion.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: handleMotion)
         }
     }
     
