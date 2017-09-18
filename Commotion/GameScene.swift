@@ -20,11 +20,11 @@ class GameScene: SKScene {
         
         if self.motion.isDeviceMotionAvailable{
             self.motion.deviceMotionUpdateInterval = 0.1
-            self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: self.handleMotion as! CMDeviceMotionHandler)
+            self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: self.handleMotion )
         }
     }
     
-    func handleMotion(_ motionData:CMDeviceMotion?, error:NSError?){
+    func handleMotion(_ motionData:CMDeviceMotion?, error:Error?){
         if let gravity = motionData?.gravity {
             self.physicsWorld.gravity = CGVector(dx: CGFloat(9.8*gravity.x), dy: CGFloat(9.8*gravity.y))
         }

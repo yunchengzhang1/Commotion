@@ -54,13 +54,14 @@ class ViewController: UIViewController {
         
         // TODO: should we be doing this from the MAIN queue? You will need to fix that!!!....
         if self.motion.isDeviceMotionAvailable{
-            self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: self.handleMotion as! CMDeviceMotionHandler)
+            self.motion.startDeviceMotionUpdates(to: OperationQueue.main,
+                                                 withHandler: self.handleMotion)
         }
     }
     
-    func handleMotion(_ motionData:CMDeviceMotion?, error:NSError?){
+    func handleMotion(_ motionData:CMDeviceMotion?, error:Error?){
         if let gravity = motionData?.gravity {
-            let rotation = atan2(gravity.x, gravity.y) - M_PI
+            let rotation = atan2(gravity.x, gravity.y) - Double.pi
             self.isWalking.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
         }
     }
@@ -89,12 +90,12 @@ class ViewController: UIViewController {
         //separate out the handler for better readability
         if CMPedometer.isStepCountingAvailable(){
             pedometer.startUpdates(from: Date(),
-                                                    withHandler: self.handlePedometer as! CMPedometerHandler)
+                                   withHandler: handlePedometer)
         }
     }
     
     //ped handler
-    func handlePedometer(_ pedData:CMPedometerData?, error:NSError?){
+    func handlePedometer(_ pedData:CMPedometerData?, error:Error?)->(){
         if let steps = pedData?.numberOfSteps {
             self.totalSteps = steps.floatValue
         }
