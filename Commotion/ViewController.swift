@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     func startAcitivityMonitoring(){
         if CMMotionActivityManager.isActivityAvailable(){
-            self.activityManager.startActivityUpdatesToQueue(NSOperationQueue.mainQueue())
+            self.activityManager.startActivityUpdates(to: OperationQueue.main)
             {(activity:CMMotionActivity?)->Void in
                 if let unwrappedActivity = activity {
                     print("%@",unwrappedActivity.description)
