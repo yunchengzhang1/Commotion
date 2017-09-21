@@ -11,6 +11,8 @@ import CoreMotion
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var activityLabel: UILabel!
+    
     // MARK: class variables
     let activityManager = CMMotionActivityManager()
 
@@ -18,20 +20,22 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.startAcitivityMonitoring()
+        startActivityMonitoring()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    func startAcitivityMonitoring(){
+    func startActivityMonitoring(){
         if CMMotionActivityManager.isActivityAvailable(){
             self.activityManager.startActivityUpdates(to: OperationQueue.main)
             {(activity:CMMotionActivity?)->Void in
                 if let unwrappedActivity = activity {
                     print("%@",unwrappedActivity.description)
+                    if(unwrappedActivity.walking){
+                        self.activityLabel.text = "Walking"
+                    }
+                    else{
+                        self.activityLabel.text = "Not Walking"
+                    }
                 }
             }
         }
