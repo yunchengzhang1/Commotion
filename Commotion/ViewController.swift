@@ -13,9 +13,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var activityLabel: UILabel!
     
-    // MARK: class variables
+    // MARK: ======Class Variables======
     let activityManager = CMMotionActivityManager()
 
+    // MARK: ======UI Lifecycle Methods======
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
         startActivityMonitoring()
     }
 
-    
+    // MARK: ======Motion Methods======
     func startActivityMonitoring(){
         if CMMotionActivityManager.isActivityAvailable(){
             self.activityManager.startActivityUpdates(to: OperationQueue.main)
