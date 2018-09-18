@@ -11,7 +11,7 @@ import CoreMotion
 
 class ViewController: UIViewController {
     
-    //MARK: class variables
+    //MARK: =====class variables=====
     let activityManager = CMMotionActivityManager()
     let pedometer = CMPedometer()
     let motion = CMMotionManager()
@@ -24,31 +24,24 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: UI Elements
+    //MARK: =====UI Elements=====
     @IBOutlet weak var stepsSlider: UISlider!
     @IBOutlet weak var stepsLabel: UILabel!
     @IBOutlet weak var isWalking: UILabel!
     
     
-    //MARK: View Hierarchy
+    //MARK: =====View Lifecycle=====
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
         self.totalSteps = 0.0
         self.startActivityMonitoring()
         self.startPedometerMonitoring()
         self.startMotionUpdates()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
-    // MARK: Raw Motion Functions
+    // MARK: =====Raw Motion Functions=====
     func startMotionUpdates(){
         // some internal inconsistency here: we need to ask the device manager for device 
         
@@ -66,7 +59,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: Activity Functions
+    // MARK: =====Activity Methods=====
     func startActivityMonitoring(){
         // is activity is available
         if CMMotionActivityManager.isActivityAvailable(){
@@ -85,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: Pedometer Functions
+    // MARK: =====Pedometer Methods=====
     func startPedometerMonitoring(){
         //separate out the handler for better readability
         if CMPedometer.isStepCountingAvailable(){
