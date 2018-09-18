@@ -91,7 +91,7 @@ class GameScene: SKScene {
         🔲.physicsBody = SKPhysicsBody(rectangleOf:🔲.size)
         🔲.physicsBody?.isDynamic = true
         🔲.physicsBody?.pinned = true
-        🔲.physicsBody?.allowsRotation = false
+        🔲.physicsBody?.allowsRotation = true
         
         self.addChild(🔲)
         
