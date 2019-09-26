@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.activityManager.startActivityUpdates(to: OperationQueue.main, withHandler: {(activity: CMMotionActivity?) -> Void in
-            print("\(activity?.description)")
+            print("\(String(describing: activity?.description))")
         })
     }
 
