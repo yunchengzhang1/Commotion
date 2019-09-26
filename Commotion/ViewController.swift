@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreMotion
 
 class ViewController: UIViewController {
 
+    let activityManager = CMMotionActivityManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.activityManager.startActivityUpdates(to: OperationQueue.main, withHandler: {(activity: CMMotionActivity?) -> Void in
+            print("\(activity?.description)")
+        })
     }
 
     override func didReceiveMemoryWarning() {
