@@ -34,8 +34,11 @@ class ViewController: UIViewController {
                     if(unwrappedActivity.walking){
                         self.activityLabel.text = "Walking"
                     }
+                    else if(unwrappedActivity.running){
+                        self.activityLabel.text = "Running"
+                    }
                     else{
-                        self.activityLabel.text = "Not Walking"
+                        self.activityLabel.text = "Not Walking or Running"
                     }
                 }
             }
