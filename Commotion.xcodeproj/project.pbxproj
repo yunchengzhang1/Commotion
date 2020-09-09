@@ -194,29 +194,29 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = "Eric Larson";
 				TargetAttributes = {
 					B62ED39E1D7F299D00B503DF = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = APD62CDC25;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1170;
 					};
 					B62ED3B21D7F299D00B503DF = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1170;
 						TestTargetID = B62ED39E1D7F299D00B503DF;
 					};
 					B62ED3BD1D7F299D00B503DF = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1170;
 						TestTargetID = B62ED39E1D7F299D00B503DF;
 					};
 				};
 			};
 			buildConfigurationList = B62ED39A1D7F299D00B503DF /* Build configuration list for PBXProject "Commotion" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -328,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -383,6 +384,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -439,7 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.Commotion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -454,7 +456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.Commotion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -467,7 +469,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.CommotionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Commotion.app/Commotion";
 			};
 			name = Debug;
@@ -481,7 +483,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.CommotionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Commotion.app/Commotion";
 			};
 			name = Release;
@@ -494,7 +496,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.CommotionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Commotion;
 			};
 			name = Debug;
@@ -507,7 +509,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.CommotionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Commotion;
 			};
 			name = Release;

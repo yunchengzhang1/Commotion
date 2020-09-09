@@ -168,7 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Utility Functions (thanks ray wenderlich!)
     func random() -> CGFloat {
-        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+        return CGFloat(Float(arc4random()) / Float(Int.max))
     }
     
     func random(min: CGFloat, max: CGFloat) -> CGFloat {
