@@ -54,14 +54,16 @@ class ViewController: UIViewController {
         
         // TODO: should we be doing this from the MAIN queue? You will need to fix that!!!....
         if self.motion.isDeviceMotionAvailable{
-            self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: handleMotion)
+            self.motion.startDeviceMotionUpdates(to: OperationQueue.main,
+                                                 withHandler: handleMotion)
         }
     }
     
     func handleMotion(_ motionData:CMDeviceMotion?, error:Error?){
         if let gravity = motionData?.gravity {
             let rotation = atan2(gravity.x, gravity.y) - Double.pi
-            self.isWalking.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
+            self.isWalking.transform = CGAffineTransform(rotationAngle:
+                                                            CGFloat(rotation))
         }
     }
     
