@@ -46,8 +46,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         backgroundColor = SKColor.white
         
-        
-        
         // start motion for gravity
         self.startMotionUpdates()
         
@@ -61,7 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // add a spinning block
         self.addBlockAtPoint(CGPoint(x: size.width * 0.5, y: size.height * 0.35))
         
-        self.addSprite()
+        self.addSpriteBottle()
         
         self.addScore()
         
@@ -80,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    func addSprite(){
+    func addSpriteBottle(){
         let spriteA = SKSpriteNode(imageNamed: "sprite") // this is literally a sprite bottle... 😎
         
         spriteA.size = CGSize(width:size.width*0.1,height:size.height * 0.1)
@@ -157,7 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: =====Delegate Functions=====
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.addSprite()
+        self.addSpriteBottle()
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
