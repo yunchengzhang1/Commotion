@@ -27,10 +27,12 @@ class ViewController: UIViewController {
     func startActivityMonitoring(){
         // if active, let's start processing
         if CMMotionActivityManager.isActivityAvailable(){
+            // assign updates to the main queue for activity
             self.activityManager.startActivityUpdates(to: OperationQueue.main)
             {(activity:CMMotionActivity?)->Void in
                 if let unwrappedActivity = activity {
-                    print("%@",unwrappedActivity.description)
+                                        
+                    print(unwrappedActivity.description)
                     if(unwrappedActivity.walking){
                         self.activityLabel.text = "Walking"
                     }
