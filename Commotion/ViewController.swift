@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Commotion
 //
-//  Created by Eric Larson on 9/6/16.
-//  Copyright © 2016 Eric Larson. All rights reserved.
+//  Created by Eric Larson.
+//  Copyright Eric Larson. All rights reserved.
 //
 
 import UIKit
@@ -19,13 +19,13 @@ class ViewController: UIViewController {
     // MARK: ======UI Lifecycle Methods======
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         startActivityMonitoring()
     }
 
     // MARK: ======Motion Methods======
     func startActivityMonitoring(){
+        // if active, let's start processing
         if CMMotionActivityManager.isActivityAvailable(){
             self.activityManager.startActivityUpdates(to: OperationQueue.main)
             {(activity:CMMotionActivity?)->Void in
