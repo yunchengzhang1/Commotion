@@ -17,31 +17,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Raw Motion Functions
     let motion = CMMotionManager()
     func startMotionUpdates(){
-        // some internal inconsistency here: we need to ask the device manager for device
-        
+        // if motion is available, start updating the device motion
         if self.motion.isDeviceMotionAvailable{
-            self.motion.deviceMotionUpdateInterval = 0.1
+            self.motion.deviceMotionUpdateInterval = 0.2
             self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: self.handleMotion )
         }
     }
     
     func handleMotion(_ motionData:CMDeviceMotion?, error:Error?){
+        // make gravity in the game als the simulator gravity
         if let gravity = motionData?.gravity {
             self.physicsWorld.gravity = CGVector(dx: CGFloat(9.8*gravity.x), dy: CGFloat(9.8*gravity.y))
         }
     }
     
-    // MARK: View Hierarchy Functions
-    let spinBlock = SKSpriteNode()
-    let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-    var score:Int = 0 {
-        willSet(newValue){
-            DispatchQueue.main.async{
-                self.scoreLabel.text = "Score: \(newValue)"
-            }
-        }
-    }
     
+    // MARK: View Hierarchy Functions
+    // this is like out "View Did Load" function
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         backgroundColor = SKColor.white
@@ -52,21 +44,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // make sides to the screen
         self.addSidesAndTop()
         
-        // add some stationary blocks
+        // add some stationary blocks on left and right
         self.addStaticBlockAtPoint(CGPoint(x: size.width * 0.1, y: size.height * 0.25))
         self.addStaticBlockAtPoint(CGPoint(x: size.width * 0.9, y: size.height * 0.25))
         
         // add a spinning block
         self.addBlockAtPoint(CGPoint(x: size.width * 0.5, y: size.height * 0.35))
         
+        // add in the interaction sprite
         self.addSpriteBottle()
         
+        // add a scorer
         self.addScore()
         
+        // update a special watched property for score
         self.score = 0
     }
     
     // MARK: Create Sprites Functions
+    let spinBlock = SKSpriteNode()
+    let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+    var score:Int = 0 {
+        willSet(newValue){
+            DispatchQueue.main.async{
+                self.scoreLabel.text = "Score: \(newValue)"
+            }
+        }
+    }
+    
     func addScore(){
         
         scoreLabel.text = "Score: 0"
@@ -89,6 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spriteA.physicsBody = SKPhysicsBody(rectangleOf:spriteA.size)
         spriteA.physicsBody?.restitution = random(min: CGFloat(1.0), max: CGFloat(1.5))
         spriteA.physicsBody?.isDynamic = true
+        // for collision detection we need to setup these masks
         spriteA.physicsBody?.contactTestBitMask = 0x00000001
         spriteA.physicsBody?.collisionBitMask = 0x00000001
         spriteA.physicsBody?.categoryBitMask = 0x00000001
@@ -158,13 +164,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addSpriteBottle()
     }
     
+    // here is our collision function
     func didBegin(_ contact: SKPhysicsContact) {
+        // if anything interacts with the spin Block, then we should update the score
         if contact.bodyA.node == spinBlock || contact.bodyB.node == spinBlock {
             self.score += 1
         }
+        
+        // TODO: How might we add additional scoring mechanisms?
     }
     
     // MARK: Utility Functions (thanks ray wenderlich!)
+    // generate some random numbers for cor graphics floats
     func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / Float(Int.max))
     }
