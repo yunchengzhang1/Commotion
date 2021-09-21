@@ -33,8 +33,6 @@ class ViewController: UIViewController {
     //MARK: View Hierarchy
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         
         self.totalSteps = 0.0
         self.startActivityMonitoring()
@@ -42,25 +40,28 @@ class ViewController: UIViewController {
         self.startMotionUpdates()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     // MARK: Raw Motion Functions
     func startMotionUpdates(){
         // some internal inconsistency here: we need to ask the device manager for device 
         
-        // TODO: should we be doing this from the MAIN queue? You will need to fix that!!!....
+        // TODO: should we be doing this from the MAIN queue? You may need to fix that!  ...
         if self.motion.isDeviceMotionAvailable{
             self.motion.startDeviceMotionUpdates(to: OperationQueue.main,
                                                  withHandler: handleMotion)
         }
     }
     
+    // Raw motion handler, update a label
     func handleMotion(_ motionData:CMDeviceMotion?, error:Error?){
         if let gravity = motionData?.gravity {
+            // assume phone is in portrait
+            // atan give angle of opposite over adjacent
+            //   (y is out top of phone, x is out the side)
+            //   but UI origin is top left with increasing down and to the right
+            //   therefore proper rotation is the angle pointing opposite of motion
+            //
             let rotation = atan2(gravity.x, gravity.y) - Double.pi
             self.isWalking.transform = CGAffineTransform(rotationAngle:
                                                             CGFloat(rotation))
@@ -77,6 +78,7 @@ class ViewController: UIViewController {
         
     }
     
+    // activity function handler, display activity in label
     func handleActivity(_ activity:CMMotionActivity?)->Void{
         // unwrap the activity and disp
         if let unwrappedActivity = activity {
@@ -94,7 +96,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //ped handler
+    //ped handler, show steps on slider
     func handlePedometer(_ pedData:CMPedometerData?, error:Error?){
         if let steps = pedData?.numberOfSteps {
             self.totalSteps = steps.floatValue
