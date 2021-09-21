@@ -34,10 +34,10 @@ class ViewController: UIViewController {
                                         
                     print(unwrappedActivity.description)
                     if(unwrappedActivity.walking){
-                        self.activityLabel.text = "Walking"
+                        self.activityLabel.text = "Walking, conf: \(unwrappedActivity.confidence.rawValue)"
                     }
                     else if(unwrappedActivity.running){
-                        self.activityLabel.text = "Running"
+                        self.activityLabel.text = "Running, conf: \(unwrappedActivity.confidence.rawValue)"
                     }
                     else{
                         self.activityLabel.text = "Not Walking or Running"
