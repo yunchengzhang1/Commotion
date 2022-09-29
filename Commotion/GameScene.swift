@@ -29,6 +29,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let gravity = motionData?.gravity {
             self.physicsWorld.gravity = CGVector(dx: CGFloat(9.8*gravity.x), dy: CGFloat(9.8*gravity.y))
         }
+        if let userAccel = motionData?.userAcceleration{
+            // cannot move a pinned block?
+            
+            if (spinBlock.position.x < 0 && userAccel.x < 0) || (spinBlock.position.x > self.size.width && userAccel.x > 0)
+            {
+                // do not update the position
+                return
+            }
+            let action = SKAction.moveBy(x: userAccel.x*100, y: 0, duration: 0.1)
+            self.spinBlock.run(action, withKey: "temp")
+
+        }
     }
     
     
@@ -108,12 +120,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spinBlock.size = CGSize(width:size.width*0.15,height:size.height * 0.05)
         spinBlock.position = point
         
+        
         spinBlock.physicsBody = SKPhysicsBody(rectangleOf:spinBlock.size)
         spinBlock.physicsBody?.contactTestBitMask = 0x00000001
         spinBlock.physicsBody?.collisionBitMask = 0x00000001
         spinBlock.physicsBody?.categoryBitMask = 0x00000001
         spinBlock.physicsBody?.isDynamic = true
-        spinBlock.physicsBody?.pinned = true
+        spinBlock.physicsBody?.pinned = false
+        spinBlock.physicsBody?.affectedByGravity = false
+        spinBlock.physicsBody?.mass = 100000
         
         self.addChild(spinBlock)
 
