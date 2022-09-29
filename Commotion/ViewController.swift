@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // just start doing motion updates
         startActivityMonitoring()
     }
 
@@ -31,13 +32,19 @@ class ViewController: UIViewController {
             self.activityManager.startActivityUpdates(to: OperationQueue.main)
             {(activity:CMMotionActivity?)->Void in
                 if let unwrappedActivity = activity {
-                                        
+                     
+                    // debug, print out the activity decsription into the console
                     print(unwrappedActivity.description)
+                    
+                    // update label with one of three activities
                     if(unwrappedActivity.walking){
-                        self.activityLabel.text = "Walking, conf: \(unwrappedActivity.confidence.rawValue)"
+                        self.activityLabel.text = "🚶Walking, conf: \(unwrappedActivity.confidence.rawValue)"
                     }
                     else if(unwrappedActivity.running){
-                        self.activityLabel.text = "Running, conf: \(unwrappedActivity.confidence.rawValue)"
+                        self.activityLabel.text = "🏃Running, conf: \(unwrappedActivity.confidence.rawValue)"
+                    }
+                    else if(unwrappedActivity.stationary){
+                        self.activityLabel.text = "📱Stationary, conf: \(unwrappedActivity.confidence.rawValue)"
                     }
                     else{
                         self.activityLabel.text = "Not Walking or Running"
