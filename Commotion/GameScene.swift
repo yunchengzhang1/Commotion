@@ -29,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let gravity = motionData?.gravity {
             self.physicsWorld.gravity = CGVector(dx: CGFloat(9.8*gravity.x), dy: CGFloat(9.8*gravity.y))
         }
+        
         if let userAccel = motionData?.userAcceleration{
             // cannot move a pinned block?
             
